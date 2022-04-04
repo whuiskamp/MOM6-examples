@@ -1,0 +1,50 @@
+Getting the repo running with the submodules was a moderate pain. Because I will definitely forget all this, the following had to be done:
+
+On github, make forks of the MOM6-examples repo as well as the MOM6, SIS2 and FMS repo (these are the submodules).
+
+At that point, clone the MOM6-examples repo (make sure to use SSH! github doesn't allow access via anything but SSH keys/ tokens):
+
+	git clone git@github.com:whuiskamp/MOM6-examples.git
+
+Update the configuration file in .gitmodules to link to your forked repos:
+
+[submodule "src/MOM6"]
+        path = src/MOM6
+        url = https://github.com/whuiskamp/MOM6.git
+[submodule "src/SIS2"]
+        path = src/SIS2
+        url = https://github.com/whuiskamp/SIS2.git
+[submodule "src/coupler"]
+        path = src/coupler
+        url = https://github.com/whuiskamp/FMScoupler
+
+Now we can initialise our submodules:
+
+cd MOM6-examples
+git submodule init src/MOM6
+git submodule init src/SIS2
+git submodule init src/coupler
+
+cd src/MOM6
+git checkout dev/gfdl
+
+cd ../../src/SIS2
+git checkout dev/gfdl
+
+cd ../../src/coupler
+git checkout main
+
+
+At this point, there is often the problem of the HEADS of the submodules being detached. Following the solutions shown here: https://stackoverflow.com/questions/18770545/why-is-my-git-submodule-head-detached-from-master/55570998#55570998
+
+I've created an alias as follows:
+git config alias.supdate 'submodule update --remote --merge'
+
+So now, in order to update our submodules all we have to do is run:
+
+git supdate src/coupler   (or SIS2)
+
+This will sometimes still result in an error (for example, the coupler is currently returning: 
+fatal: Needed a single revision
+Unable to find current origin/master revision in submodule path 'src/coupler'
+)
