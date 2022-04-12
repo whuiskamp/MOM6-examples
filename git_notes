@@ -34,17 +34,21 @@ git checkout dev/gfdl
 cd ../../src/coupler
 git checkout main
 
+Same has to be done for mkmf
 
-At this point, there is often the problem of the HEADS of the submodules being detached. Following the solutions shown here: https://stackoverflow.com/questions/18770545/why-is-my-git-submodule-head-detached-from-master/55570998#55570998
+
+At this point, there is often the problem of the HEADS of the submodules being detached (though this should have been fixed by manually checking out the repo previously). Following the solutions shown here: https://stackoverflow.com/questions/18770545/why-is-my-git-submodule-head-detached-from-master/55570998#55570998
 
 I've created an alias as follows:
 git config alias.supdate 'submodule update --remote --merge'
 
 So now, in order to update our submodules all we have to do is run:
 
-git supdate src/coupler   (or SIS2)
+git supdate src/coupler   (or MOM6,SIS2)
 
 This will sometimes still result in an error (for example, the coupler is currently returning: 
 fatal: Needed a single revision
 Unable to find current origin/master revision in submodule path 'src/coupler'
 )
+
+That's on the to-do list...
