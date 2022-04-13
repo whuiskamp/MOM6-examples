@@ -51,4 +51,17 @@ fatal: Needed a single revision
 Unable to find current origin/master revision in submodule path 'src/coupler'
 )
 
-That's on the to-do list...
+That's on the to-do list... but can also just be ignored with a git pull (?!)
+
+For the submodules we do not intend to edit, we still need to initialise and check these out:
+
+git submodule init src/atmos_null (etc... do this for all of them)
+ 
+then go to main repo and run:
+
+git pull --recurse-submodules
+
+Finally, we also need to include the files in src/MOM6/pkg/GSW--Fortran/
+cd src/MOM6
+git submodule init pkg/GSW-Fortran
+git submodule update pkg/GSW-Fortran

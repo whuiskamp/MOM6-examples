@@ -2,6 +2,8 @@
 build*
 # Ignore .datasets
 .datasets
+# Ignore compiler log
+compile_log.txt
 # Ignore model output
 *.out
 CPU_stats
