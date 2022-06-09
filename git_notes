@@ -51,7 +51,7 @@ fatal: Needed a single revision
 Unable to find current origin/master revision in submodule path 'src/coupler'
 )
 
-That's on the to-do list... but can also just be ignored with a git pull (?!)
+That's on the to-do list... but can also just be ignored with a git pull in the actual submodule dir (?!)
 
 For the submodules we do not intend to edit, we still need to initialise and check these out:
 
